@@ -50,10 +50,12 @@ dependencies {
   implementation(libs.androidx.navigation.compose)
   implementation(libs.hilt.android)
   kapt(libs.hilt.android.compiler)
-  // Import the BoM for the Firebase platform
+  //Firebase
   implementation(platform(libs.firebase.bom))
-  // Add the dependency for the Firebase Authentication library
+  implementation(libs.firebase.firestore)
   implementation(libs.firebase.auth)
+  implementation(libs.firebase.crashlytics)
+  implementation(libs.firebase.analytics)
 
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)

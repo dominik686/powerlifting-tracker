@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Powerlifting Tracker</string>
+
+    <!-- Error -->
+    <string name="generic_error">Something went wrong</string>
+
 </resources>
