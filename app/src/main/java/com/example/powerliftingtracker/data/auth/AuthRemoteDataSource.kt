@@ -1,5 +1,6 @@
 package com.example.powerliftingtracker.data.auth
 
+import android.util.Log
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -34,8 +35,22 @@ class AuthRemoteDataSource @Inject constructor(private val auth: FirebaseAuth) {
     }
 
     suspend fun linkAccount(email: String, password: String){
-        val credential = EmailAuthProvider.getCredential(email, password)
-        auth.currentUser!!. linkWithCredential(credential).await()
+
+        try {
+            if(auth.currentUser == null)
+            {
+                auth.createUserWithEmailAndPassword(email, password).await()
+            }
+            else{
+                val credential = EmailAuthProvider.getCredential(email, password)
+                auth.currentUser!!. linkWithCredential(credential).await()
+
+            }
+        } catch (e: Exception) {
+            Log.d("Firebase Exception: ", e.toString())
+            var d = "dd"
+        }
+
     }
     suspend fun deleteAccount(){
         auth.currentUser!!.delete().await()
